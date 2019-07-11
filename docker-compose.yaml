@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  # InfluxDB
+  influxdb:
+    container_name: influxdb
+    image: influxdb
+    ports:
+          - "127.0.0.1:8086:8086/tcp"
+  # Myapp
+  myapp:
+    build: .
+    links:
+          - influxdb 
+
+networks:
+  default:
+    external:
+      name: mat-coding-challenge_default 

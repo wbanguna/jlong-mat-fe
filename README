@@ -1,0 +1,27 @@
+Run Steps:
+1. git clone https://github.com/McLarenAppliedTechnologies/MAT-Coding-Challenge.git
+2. cd MAT-Coding-Challenge; docker-compose build && docker-compose up -d; cd -
+3. docker-compose build && docker-compose up -d
+4. go to http://localhost:8084/dashboard
+
+(step 3 above requires default external network mat-coding-challenge_default)
+
+main.py Notes:
+Requirements:-
+- paho-mqtt
+- influxdb
+- haversine
+
+Improvements to consider:
+1. Write pytest assertions
+2. Include app logging
+
+
+Cloud Deployment:
+1. locate close to mqtt broker for fast communication (same region, availability domain)
+2. capacity planning required to understand hardware and performance requirements (test response time, throughput, cpu, mem, network, I/O utilization)
+3. monitoring service such as prometheus/alertmanager to scrape desired metrics and publish to dahsboard such as grafana 
+4. influxdb-relay for replication and HA.
+5. kubernetes cluster with two nodes, deployment/pod/replicaSet for each app/influxdb layer.
+6. Ideally Each node within a separate availability domain or datacenter.
+7. Use tool for provisioning cloud infrastructure such as terraform.
